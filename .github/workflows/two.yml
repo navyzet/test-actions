@@ -9,5 +9,5 @@ jobs:
   my-step:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "TEST ${{ github.event.workflow_run.run_number }}"
+      - run: echo "TEST ${{ github.event.workflow_run.env.MYBUILD }}"
       - run: echo "My run number ${{ github.run_number }}"

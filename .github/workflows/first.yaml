@@ -1,4 +1,6 @@
 name: first-action
+env:
+  MYBUILD: "1000"
 on: [push]
 jobs:
   check-bats-version:
