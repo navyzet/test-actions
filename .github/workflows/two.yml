@@ -1,4 +1,4 @@
-name: first-action
+name: two-action
 on:
   workflow_run:
     workflows: [ "first-action" ]
