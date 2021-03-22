@@ -9,4 +9,4 @@ jobs:
   my-step:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "TEST ${{ github.event.workflow_run.workflow_id }}"
+      - run: echo "TEST ${{ github.event.workflow_run.run_number }}"
