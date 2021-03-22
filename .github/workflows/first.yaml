@@ -1,4 +1,4 @@
-name: my-action
+name: first-action
 on: [push]
 jobs:
   check-bats-version:

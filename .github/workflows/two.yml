@@ -1,0 +1,12 @@
+name: first-action
+on:
+  workflow_run:
+    workflows: [ "first-action" ]
+    branches: [ main ]
+    types:
+      - completed
+jobs:
+  my-step:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "OK"
