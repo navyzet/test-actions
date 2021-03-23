@@ -1,0 +1,18 @@
+name: Deploy azure prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: 'Image tag to deploy(from build stage)'
+        required: true
+        default: 'latest'
+
+env:
+  RELEASE_NAME: ${{ github.event.inputs.image_tag }}
+
+jobs:
+  deploy-to-uat:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy to azure uat image:$RELEASE_NAME"
