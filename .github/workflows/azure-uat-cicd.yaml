@@ -2,8 +2,6 @@ name: Deploy azure uat
 on:
   workflow_run:
     workflows: ["Run tests"]
-    tags:
-      - '*'
     types:
       - completed
 
