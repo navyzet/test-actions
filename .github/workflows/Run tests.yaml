@@ -1,4 +1,4 @@
-name: run test
+name: Run tests
 on: [push]
 
 env:

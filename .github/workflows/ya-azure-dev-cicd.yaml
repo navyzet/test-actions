@@ -1,0 +1,28 @@
+name: Deploy to yandex and azure dev environment
+on:
+  workflow_run:
+    workflows: ["Run tests"]
+    branches: [main]
+    types:
+      - completed
+
+env:
+  BUILD_NUMBER: ${{ github.run_number }}
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build image image:$BUILD_NUMBER"
+
+  deploy-to-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy-to-dev image:$BUILD_NUMBER"
+    needs: [build-image]
+
+  deploy-to-yat:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy-to-yat image:${{ github.run_number }}"
+    needs: [build-image]
