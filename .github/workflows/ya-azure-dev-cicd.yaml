@@ -15,6 +15,7 @@ on:
 
 env:
   BUILD_NUMBER: ${{ github.run_number }}
+  BRANCH_NAME: ${{ head_ref }}
 
 jobs:
   debug:
@@ -28,16 +29,16 @@ jobs:
   build-image:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Build image image:$BUILD_NUMBER"
+      - run: echo "Build image image:$BRANCH_NAME-$BUILD_NUMBER"
 
   deploy-ya-dev:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Deploy to dev yandex image:$BUILD_NUMBER"
+      - run: echo "Deploy to dev yandex image:$BRANCH_NAME-$BUILD_NUMBER"
     needs: [build-image]
 
   deploy-azure-dev:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Deploy to dev azure image:$BUILD_NUMBER"
+      - run: echo "Deploy to dev azure image:$BRANCH_NAME-$BUILD_NUMBER"
     needs: [build-image]
