@@ -15,7 +15,7 @@ on:
 
 env:
   BUILD_NUMBER: ${{ github.run_number }}
-  BRANCH_NAME: ${{ head_ref }}
+  BRANCH_NAME: ${{ github.head_ref }}
 
 jobs:
   debug:
