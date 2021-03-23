@@ -7,27 +7,9 @@ on:
       - completed
 
 env:
-  BUILD_NUMBER: ${{ github.run_number }}
-  PREV_BUILD_NUMBER2: ${{ github.event.workflow_run.run_number }}
+  BUILD_NUMBER: ${{ github.event.workflow_run.run_number }}
 
 jobs:
-  debug:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print github context
-        env:
-            PREV_BUILD_NUMBER: ${{ github.event.workflow_run.run_number }}
-        run: echo "$PREV_BUILD_NUMBER"
-      - run: echo "CALL 1 ${{ github.event.workflow_run.run_number }}"
-      - run: echo "CALL 2 $PREV_BUILD_NUMBER2"
-
-
-  build-image:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Build image image:$BUILD_NUMBER"
-
   deploy-to-dev:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
@@ -39,5 +21,5 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Deploy-to-yat image:${{ github.run_number }}"
+      - run: echo "Deploy-to-yat image:$BUILD_NUMBER"
     needs: [build-image]
