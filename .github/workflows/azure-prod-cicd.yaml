@@ -12,7 +12,7 @@ env:
   RELEASE_NAME: ${{ github.event.inputs.image_tag }}
 
 jobs:
-  deploy-to-uat:
+  deploy-to-prod:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Deploy to azure uat image:$RELEASE_NAME"
+      - run: echo "Deploy to azure prod image:$RELEASE_NAME"
