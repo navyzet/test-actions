@@ -2,7 +2,10 @@ name: Deploy to yandex and azure dev environment
 on:
   workflow_run:
     workflows: ["Run tests"]
-    branches: [main]
+    branches:
+     - main
+    tags:
+      - '*'
     types:
       - completed
 
@@ -10,14 +13,8 @@ env:
   BUILD_NUMBER: ${{ github.event.workflow_run.run_number }}
 
 jobs:
-  deploy-ya-dev:
+  deploy-to-uat:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Deploy to dev yandex image:$BUILD_NUMBER"
-
-  deploy-azure-dev:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Deploy to dev azure image:$BUILD_NUMBER"
+      - run: echo "Deploy to azure uat image:$BUILD_NUMBER"
