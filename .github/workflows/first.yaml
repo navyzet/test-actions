@@ -4,18 +4,18 @@ jobs:
   build-image:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Build image image:${{ env.GITHUB_RUN_NUMBER }}"
+      - run: echo "Build image image:${{ github.run_number }}"
 
   tests:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Test 1 image:${{ env.GITHUB_RUN_NUMBER }}"
-      - run: echo "Test 2 image:${{ env.GITHUB_RUN_NUMBER }}"
+      - run: echo "Test 1 image:${{ github.run_number }}"
+      - run: echo "Test 2 image:${{ github.run_number }}"
     needs: [build-image]
 
   deploy-to-dev:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Deploy-to-dev image:${{ env.GITHUB_RUN_NUMBER }}"
+      - run: echo "Deploy-to-dev image:${{ github.run_number }}"
     needs: [tests]
