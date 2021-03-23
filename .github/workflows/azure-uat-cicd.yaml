@@ -1,6 +1,8 @@
 name: Deploy azure uat
 on:
   push:
+    branches:
+      - main
     tags:
       - '*'
 
