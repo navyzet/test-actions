@@ -8,6 +8,7 @@ on:
 
 env:
   BUILD_NUMBER: ${{ github.run_number }}
+  PREV_BUILD_NUMBER2: ${{ github.event.workflow_run.run_number }}
 
 jobs:
   debug:
@@ -17,6 +18,9 @@ jobs:
         env:
             PREV_BUILD_NUMBER: ${{ github.event.workflow_run.run_number }}
         run: echo "$PREV_BUILD_NUMBER"
+      - run: echo "CALL 1 ${{ github.event.workflow_run.run_number }}"
+      - run: echo "CALL 2 $PREV_BUILD_NUMBER2"
+
 
   build-image:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
