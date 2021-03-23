@@ -4,6 +4,8 @@ on:
     workflows: ["Run tests"]
     branches:
      - main
+    tags:
+      - *
     types:
       - completed
 
@@ -18,7 +20,6 @@ jobs:
         env:
             GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
-
   deploy-to-uat:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
