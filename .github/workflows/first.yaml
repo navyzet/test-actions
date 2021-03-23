@@ -19,3 +19,10 @@ jobs:
     steps:
       - run: echo "Deploy-to-dev image:${{ github.run_number }}"
     needs: [tests]
+
+  deploy-to-yat:
+    if: github.ref == 'refs/tags/*'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy-to-yat image:${{ github.run_number }}"
+    needs: [tests]
