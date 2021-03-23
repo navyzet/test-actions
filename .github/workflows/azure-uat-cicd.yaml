@@ -1,14 +1,25 @@
 name: Deploy azure uat
 on:
-  workflow_run:
-    workflows: ["Run tests"]
-    types:
-      - completed
+  push:
+    tags:
+      - '*'
 
 env:
-  BUILD_NUMBER: ${{ github.event.workflow_run.run_number }}
+  BUILD_NUMBER: ${{ github.run_number }}
 
 jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build image image:$BUILD_NUMBER"
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test 1 image:$BUILD_NUMBER"
+      - run: echo "Test 2 image:$BUILD_NUMBER"
+    needs: [build-image]
+
   debug:
     runs-on: ubuntu-latest
     steps:
@@ -16,8 +27,10 @@ jobs:
         env:
             GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
+
   deploy-to-uat:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "Deploy to azure uat image:$BUILD_NUMBER"
+    needs: [tests]

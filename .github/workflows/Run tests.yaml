@@ -1,8 +1,9 @@
 name: Run tests
 on:
   push:
-    tags:
+    tags-ignore:
       - '*'
+
 env:
   BUILD_NUMBER: ${{ github.run_number }}
 
