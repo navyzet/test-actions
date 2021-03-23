@@ -1,11 +1,11 @@
-name: Deploy to yandex and azure dev environment
+name: Deploy azure uat
 on:
   workflow_run:
     workflows: ["Run tests"]
     branches:
      - main
     tags:
-      - '*'
+      - '.*'
     types:
       - completed
 
