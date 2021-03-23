@@ -15,8 +15,8 @@ jobs:
     steps:
       - name: Print github context
         env:
-            GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
+            PREV_BUILD_NUMBER: ${{ github.event.workflow_run.run_number }}
+        run: echo "$PREV_BUILD_NUMBER"
 
   build-image:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
