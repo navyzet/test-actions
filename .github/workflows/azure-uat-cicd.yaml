@@ -5,19 +5,19 @@ on:
     types: [published]
 
 env:
-  BUILD_NUMBER: ${{ github.run_number }}
+  RELEASE_NAME: ${{ github.event.release.tag_name }}
 
 jobs:
   build-image:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Build image image:$BUILD_NUMBER"
+      - run: echo "Build image image:$RELEASE_NAME"
 
   tests:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Test 1 image:$BUILD_NUMBER"
-      - run: echo "Test 2 image:$BUILD_NUMBER"
+      - run: echo "Test 1 image:$RELEASE_NAME"
+      - run: echo "Test 2 image:$RELEASE_NAME"
     needs: [build-image]
 
   debug:
@@ -29,8 +29,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
 
   deploy-to-uat:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Deploy to azure uat image:$BUILD_NUMBER"
+      - run: echo "Deploy to azure uat image:$RELEASE_NAME"
     needs: [tests]
