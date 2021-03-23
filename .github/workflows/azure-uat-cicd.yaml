@@ -4,7 +4,7 @@ on:
     branches:
       - main
     tags:
-      - '*'
+      - '.*'
 
 env:
   BUILD_NUMBER: ${{ github.run_number }}
