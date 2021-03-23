@@ -1,0 +1,32 @@
+name: run test
+on: [push]
+
+env:
+  BUILD_NUMBER: ${{ github.run_number }}
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build image image:$BUILD_NUMBER"
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test 1 image:$BUILD_NUMBER"
+      - run: echo "Test 2 image:$BUILD_NUMBER"
+    needs: [build-image]
+
+#  deploy-to-dev:
+#    if: github.ref == 'refs/heads/main'
+#    runs-on: ubuntu-latest
+#    steps:
+#      - run: echo "Deploy-to-dev image:$BUILD_NUMBER"
+#    needs: [tests]
+#
+#  deploy-to-yat:
+#    if: github.ref == 'refs/tags/*'
+#    runs-on: ubuntu-latest
+#    steps:
+#      - run: echo "Deploy-to-yat image:${{ github.run_number }}"
+#    needs: [tests]
