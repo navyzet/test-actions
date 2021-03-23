@@ -1,10 +1,21 @@
 name: first-action
-env:
-  MYBUILD: "1000"
 on: [push]
 jobs:
-  check-bats-version:
+  build-image:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "OK"
-      - run: echo "My run number ${{ github.run_number }}"
+      - run: echo "Build image image:$GITHUB_RUN_NUMBER"
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test 1 image:$GITHUB_RUN_NUMBER"
+      - run: echo "Test 2 image:$GITHUB_RUN_NUMBER"
+    needs: [build-image]
+
+  deploy-to-dev:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy-to-dev image:$GITHUB_RUN_NUMBER"
+    needs: [tests]
