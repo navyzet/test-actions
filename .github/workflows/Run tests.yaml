@@ -15,13 +15,13 @@ env:
   BRANCH_REF: ${{ github.ref }}
 
 jobs:
-  debug:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print github context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
+#  debug:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Print github context
+#        env:
+#          GITHUB_CONTEXT: ${{ toJSON(github) }}
+#        run: echo "$GITHUB_CONTEXT"
 
   build-image:
     runs-on: ubuntu-latest
