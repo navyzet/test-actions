@@ -1,14 +1,14 @@
 name: Run tests
-#on:
-#  push:
-#    branches:
-#      - '*'
-#    tags-ignore:
-#      - '*'
-
 on:
-  pull_request:
-    types: [opened, edited, synchronize, reopened]
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - '*'
+
+#on:
+#  pull_request:
+#    types: [opened, edited, synchronize, reopened]
 
 env:
   BUILD_NUMBER: ${{ github.run_number }}

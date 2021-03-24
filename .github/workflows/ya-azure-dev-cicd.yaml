@@ -1,13 +1,13 @@
 name: Deploy to yandex and azure dev environment
 on:
-  push:
-    branches:
-      - main
-    tags-ignore:
-      - '*'
+  workflow_run:
+    workflows: ["Run tests"]
+    branches: [main]
+    types:
+      - completed
 
 env:
-  BUILD_NUMBER: ${{ github.run_number }}
+  BUILD_NUMBER: ${{ github.event.workflow_run.run_number }}
   BRANCH_NAME: "main"
 
 jobs:
