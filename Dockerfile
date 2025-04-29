@@ -1,3 +1,3 @@
 FROM alpine
 
-RUN "echo ok"
+RUN echo ok
