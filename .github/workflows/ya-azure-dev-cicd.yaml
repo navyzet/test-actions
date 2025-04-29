@@ -23,12 +23,12 @@ jobs:
   build-image:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Build image image:${BUILD_REF}-${BUILD_SHA:0:7}-${BUILD_NUMBER}""
+      - run: echo "Build image image:${BUILD_REF}-${BUILD_SHA:0:7}-${BUILD_NUMBER}"
 
   deploy-ya-dev:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Deploy to dev yandex image:${BUILD_REF}-${BUILD_SHA:0:7}-${BUILD_NUMBER}""
+      - run: echo "Deploy to dev yandex image:${BUILD_REF}-${BUILD_SHA:0:7}-${BUILD_NUMBER}"
     needs: [build-image]
 
   deploy-azure-dev:
