@@ -40,4 +40,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: "navyzet/hello:test,navyzet/hello:${BUILD_REF}-${BUILD_SHA:0:7}-${BUILD_NUMBER}"
+          tags: |
+            navyzet/hello:test
+            navyzet/hello:${BUILD_REF}-${BUILD_SHA:0:7}-${BUILD_NUMBER}
