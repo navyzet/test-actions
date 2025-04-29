@@ -42,4 +42,4 @@ jobs:
           push: true
           tags: |
             navyzet/hello:test
-            navyzet/hello:${BUILD_REF}-${BUILD_SHA:0:7}-${BUILD_NUMBER}
+            navyzet/hello:${{ env.BUILD_REF }}-${{ env.BUILD_SHA }}-${{ env.BUILD_NUMBER }}
