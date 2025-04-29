@@ -9,7 +9,7 @@ on:
 env:
   BUILD_NUMBER: ${{ github.event.workflow_run.run_number }}
   BUILD_SHA: ${{ github.workflow_sha }}
-  BUILD_REF: ${{ github.ref }}
+  BUILD_REF: ${{ github.ref_name }}
 
 jobs:
   debug:
